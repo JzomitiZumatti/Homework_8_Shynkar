@@ -3,10 +3,16 @@ import java.util.Random;
 public class GuessNumber {
     public static void main(String[] args) {
         Random random = new Random();
-        int randNumber = random.nextInt(10);
-        System.out.println("Number, which you need to guess: " + randNumber);
+
         int counter = 0;
-        System.out.print("Try to guess the number: ");
+        int maxAttempts = 4;
+
+        int randNumber = random.nextInt(10);
+
+        System.out.println("Number, which you need to guess: " + randNumber);
+        System.out.print("Try to guess the number (attempt: " + (counter + 1) + "/ 4): ");
+        counter++;
+
         do {
             int temp = random.nextInt(10);
             System.out.print(temp);
@@ -14,13 +20,14 @@ public class GuessNumber {
                 System.out.println("\nYou win!");
                 break;
             } else {
-                if (counter < 3) {
-                    System.out.print("\nYou didn't guess, try again: ");
+                if (counter < maxAttempts) {
+                    System.out.print("\nYou didn't guess, try again (attempt: " + (counter + 1) +
+                            "/ 4): ");
                 } else {
                     System.out.println("\nYou lose!");
                 }
             }
             counter++;
-        } while (counter < 4);
+        } while (counter <= maxAttempts);
     }
 }
